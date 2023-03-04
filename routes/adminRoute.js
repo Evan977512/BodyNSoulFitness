@@ -47,14 +47,14 @@ router.post("/change-trainer-status", authMiddleware, async (req, res) => {
       status,
     });
 
-    const user = await User.findOne({_id: trainer.userId});
+    const user = await User.findOne({ _id: trainer.userId });
     const unseenNotifications = user.unseenNotifications;
     unseenNotifications.push({
       type: "new-trainer-request-changed",
       message: `Your trainer account has changed the status ${status}`,
-      onClickPath: "/notifications"
-    })
-    user.isTrainer = status === "approved" ? true : false; 
+      onClickPath: "/notifications",
+    });
+    user.isTrainer = status === "approved" ? true : false;
     await user.save();
     const trainers = await Trainer.find({});
 
@@ -63,7 +63,6 @@ router.post("/change-trainer-status", authMiddleware, async (req, res) => {
       success: true,
       data: trainer,
     });
-
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -73,7 +72,5 @@ router.post("/change-trainer-status", authMiddleware, async (req, res) => {
     });
   }
 });
-
-
 
 module.exports = router;

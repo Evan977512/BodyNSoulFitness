@@ -4,9 +4,9 @@ import Layout from "../components/Layout";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import axios from "axios";
 import { Button, Table } from "antd";
-import moment from 'moment';
+import moment from "moment";
 import { toast } from "react-hot-toast";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function ChatLists() {
   const [contents, setContents] = useState([]);
